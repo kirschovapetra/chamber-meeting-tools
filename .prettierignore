@@ -1,0 +1,12 @@
+out/**
+build/**
+next-env.d.ts
+node_modules
+.next
+package-lock.json
+package.json
+.env
+.env.local
+public/**/*.svg
+public/**/*.png
+public/**/*.jpg
