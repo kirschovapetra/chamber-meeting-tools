@@ -12,6 +12,7 @@
     "format:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,ts,tsx,css,json}\""
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.34.0",
     "@emotion/react": "^11.14.0",
     "next": "16.1.6",
