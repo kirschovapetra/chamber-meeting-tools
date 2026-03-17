@@ -27,7 +27,7 @@ export default function GlobalLayout ({title, children, reset=()=>{}, generatePd
 
   return (
     <Box>
-      <Heading size="2xl" textAlign={'center'}>{title}</Heading>
+      <Heading size="3xl" textAlign={'center'}>{title}</Heading>
       <Heading size="md" textAlign={'center'}>{getDate()}</Heading>
       {children}
       <Flex justifyContent={'flex-end'}>
