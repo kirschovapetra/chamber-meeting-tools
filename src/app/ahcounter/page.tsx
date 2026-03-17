@@ -1,10 +1,11 @@
+import GlobalLayout from '@/components/ui/global-layout';
 import NavigationMenu from '@/components/ui/navigation-menu';
 
-export default async function Page() {
+export default async function AhCounter() {
   return (
     <>
       <NavigationMenu />
-      <h1>Ah Counter</h1>
+      <GlobalLayout title="Ah Counter"/>
     </>
   );
 }

@@ -17,6 +17,8 @@ theme/
 /.next/
 /out/
 .idea
+.idea/*
+package-lock.json
 
 # production
 /build
