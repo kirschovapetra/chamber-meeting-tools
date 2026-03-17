@@ -1,3 +1,11 @@
+enum PageType {
+  Timer = 'TIMER',
+  AhCounter = 'AH_COUNTER',
+  Grammarian = 'GRAMMARIAN',
+}
+
+type Row = TimerRow | AhCounterRow | GrammarianRow;
+
 type TimerRow = {
     role:string, 
     speakerName:string, 

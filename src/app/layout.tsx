@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import React from 'react';
 import { Provider } from '@/components/ui/provider';
+import { StorageProvider } from '@/components/data/storage-provider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,7 +19,11 @@ export default function RootLayout({
         <title></title>
       </head>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <StorageProvider>
+            {children}
+          </StorageProvider>
+          </Provider>
       </body>
     </html>
   );
