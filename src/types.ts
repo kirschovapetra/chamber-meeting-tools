@@ -4,15 +4,32 @@ enum PageType {
   Grammarian = 'GRAMMARIAN',
 }
 
+enum Status {
+    Start = "Start", 
+    Stop = "Stop"
+}
+
+type Product = {
+  id: number
+  name: string
+  category: string
+  price: number
+  stock: number
+}
+
 type Row = TimerRow | AhCounterRow | GrammarianRow;
 
 type TimerRow = {
+    checkbox?: any,
+    time?: any,
     role:string, 
-    speakerName:string, 
-    greenTime:any, 
-    amberTime:any, 
+    speakerName?:string, 
+    greenTime?:any, 
+    amberTime?:any, 
     redTime:any, 
-    resultTime:any
+    resultTime:any,
+    buttons?: any,
+    status: any
 };
 
 type WordCount = {

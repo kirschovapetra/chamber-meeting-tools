@@ -1,3 +1,4 @@
+"use client"
 import { Inter } from 'next/font/google';
 import React from 'react';
 import { Provider } from '@/components/ui/provider';
@@ -20,9 +21,9 @@ export default function RootLayout({
       </head>
       <body>
         <Provider>
-          <StorageProvider>
+          {/* <StorageProvider> */}
             {children}
-          </StorageProvider>
+          {/* </StorageProvider> */}
           </Provider>
       </body>
     </html>
