@@ -19,6 +19,14 @@ type Product = {
 
 type Row = TimerRow | AhCounterRow | GrammarianRow;
 
+type GenericTableType = {
+	data:Row[],
+	columns:any[],
+	selection:string[],
+	toggleTooltip:any,
+	deleteSelectedRows:any
+}
+
 type TimerRow = {
 	checkbox?: any;
 	time?: any;
