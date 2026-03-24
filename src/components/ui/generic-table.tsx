@@ -1,0 +1,73 @@
+'use client';
+
+import { ActionBar, Button, Checkbox, IconButton, Menu, Portal, Table } from '@chakra-ui/react';
+import { createColumnHelper, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useMemo, useState } from 'react';
+import { buttonStyle } from '../styles';
+import EditableName from './editable-name';
+import { LuCirclePlus, LuX } from 'react-icons/lu';
+import { dataTemplate, defaultRow } from '../data/data';
+import RowButtons from './row-buttons';
+
+export default function GenericTable({data, columns, selection, toggleTooltip, deleteSelectedRows}: GenericTableType) {
+	
+	
+	const table = useReactTable({
+		data,
+		columns,
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+	});
+
+	return (
+		<>
+			<Table.ScrollArea>
+				<Table.Root interactive size='sm' variant='line' native>
+					<Table.Header>
+						{table.getHeaderGroups().map((headerGroup) => (
+							<Table.Row bg='bg.subtle' key={headerGroup.id}>
+								{headerGroup.headers.map((header: any) => (
+									<Table.ColumnHeader key={header.id}>
+										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+									</Table.ColumnHeader>
+								))}
+							</Table.Row>
+						))}
+					</Table.Header>
+					<Table.Body>
+						{table.getRowModel().rows.map((row) => (
+							<Table.Row
+								key={row.id}
+								data-selected={selection.includes(row.id) ? '' : undefined}
+								onMouseEnter={() => {
+									toggleTooltip(row.id, true);
+								}}
+								onMouseLeave={() => {
+									toggleTooltip(row.id, false);
+								}}
+							>
+								{row.getVisibleCells().map((cell: any) => (
+									<Table.Cell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Table.Cell>
+								))}
+							</Table.Row>
+						))}
+					</Table.Body>
+				</Table.Root>
+			</Table.ScrollArea>
+
+			<ActionBar.Root open={selection.length > 0}>
+				<Portal>
+					<ActionBar.Positioner>
+						<ActionBar.Content>
+							<ActionBar.SelectionTrigger>{selection.length} selected</ActionBar.SelectionTrigger>
+							<ActionBar.Separator />
+							<Button variant='outline' size='sm' onClick={deleteSelectedRows}>
+								Delete <LuX />
+							</Button>
+						</ActionBar.Content>
+					</ActionBar.Positioner>
+				</Portal>
+			</ActionBar.Root>
+		</>
+	);
+}
