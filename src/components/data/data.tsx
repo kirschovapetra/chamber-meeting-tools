@@ -1,15 +1,3 @@
-export const defaultRow = {
-	time: '',
-	role: '',
-	speakerName: '0:00',
-	greenTime: '0:00',
-	amberTime: '0:00',
-	redTime: '0:00',
-	resultTime: '0:00',
-	status: 'Start',
-	tooltipVisible: false,
-};
-
 export const dataTemplate = [
 	{
 		time: '19:15',

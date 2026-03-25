@@ -17,9 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body>
 				<Provider>
-					{/* <StorageProvider> */}
+					<StorageProvider>
 					{children}
-					{/* </StorageProvider> */}
+					</StorageProvider>
 				</Provider>
 			</body>
 		</html>

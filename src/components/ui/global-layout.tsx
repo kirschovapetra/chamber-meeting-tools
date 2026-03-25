@@ -7,11 +7,13 @@ export default function GlobalLayout({
 	children,
 	reset = () => {},
 	generatePdf = () => {},
+	addRow = () => {}
 }: {
 	title: any;
 	children?: React.ReactNode;
 	reset?: any;
 	generatePdf?: any;
+	addRow?: any;
 }) {
 	const getDate = () => {
 		const dateObject = new Date();
@@ -40,6 +42,9 @@ export default function GlobalLayout({
 			</Heading>
 			<Box p={10}>{children}</Box>
 			<Flex justifyContent={'flex-end'}>
+				<Button {...buttonStyle} onClick={addRow}>
+					Add row
+				</Button>
 				<Button {...buttonStyle} onClick={reset}>
 					Reset
 				</Button>

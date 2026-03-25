@@ -3,7 +3,7 @@ import { buttonStyle } from '../styles';
 import { useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 
-export default function RowButtons({ addRow, toggleTimer, resetTimer, value }: { addRow: any; toggleTimer: any; resetTimer: any; value: any }) {
+export default function RowButtons({ insertRow, toggleTimer, resetTimer, value }: { insertRow: any; toggleTimer: any; resetTimer: any; value: any }) {
 	const [open, setOpen] = useState(false);
 	return (
 		<>
@@ -22,10 +22,10 @@ export default function RowButtons({ addRow, toggleTimer, resetTimer, value }: {
 				<Portal>
 					<Menu.Positioner>
 						<Menu.Content>
-							<Menu.Item value='add-up' onClick={()=>addRow(0)}>
+							<Menu.Item value='add-up' onClick={()=>insertRow(0)}>
 								New Row Above
 							</Menu.Item>
-							<Menu.Item value='add-down' onClick={()=>addRow(1)}>
+							<Menu.Item value='add-down' onClick={()=>insertRow(1)}>
 								New Row Below
 							</Menu.Item>
 						</Menu.Content>

@@ -1,13 +1,8 @@
 'use client';
 
-import { ActionBar, Button, Checkbox, IconButton, Menu, Portal, Table } from '@chakra-ui/react';
-import { createColumnHelper, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
-import { buttonStyle } from '../styles';
-import EditableName from './editable-name';
-import { LuCirclePlus, LuX } from 'react-icons/lu';
-import { dataTemplate, defaultRow } from '../data/data';
-import RowButtons from './row-buttons';
+import { ActionBar, Button, Portal, Table } from '@chakra-ui/react';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { LuX } from 'react-icons/lu';
 
 export default function GenericTable({data, columns, selection, toggleTooltip, deleteSelectedRows}: GenericTableType) {
 	
