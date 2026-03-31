@@ -46,7 +46,7 @@ export default function TablePageWrapper({
 	}, [isMountedRef]);
 
 	const addRow = () => {
-		updateData([...data, {...defaultRow}]);
+		updateData([...data, { ...defaultRow }]);
 		setSelection(new Set());
 	};
 
@@ -88,8 +88,8 @@ export default function TablePageWrapper({
 	};
 
 	const insertRow = (info: any, offset: number) => {
-		console.log(info.row.index)
-		updateData(data.toSpliced(info.row.index + offset, 0, {...defaultRow}));
+		console.log(info.row.index);
+		updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow }));
 		setSelection(new Set());
 	};
 
@@ -98,7 +98,7 @@ export default function TablePageWrapper({
 	const toggleTimer = (info: any) => {
 		const dataObjIdx = info.row.index;
 		const dataObj = data.at(dataObjIdx) as TimerRow;
-		console.log(dataObj)
+		console.log(dataObj);
 		if (dataObj !== undefined) {
 			dataObj.buttons = dataObj.buttons == 'Start' ? 'Stop' : 'Start';
 			updateData(
@@ -125,7 +125,7 @@ export default function TablePageWrapper({
 	// const getStatus = (info: any) => {
 	// 	const dataObj = data.at(info.row.index) as TimerRow;
 	// 	return (dataObj !== undefined) ? dataObj.status : '';
-	// }; 
+	// };
 
 	const columns = [
 		...[
@@ -163,7 +163,7 @@ export default function TablePageWrapper({
 								insertRow={(offset: any) => insertRow(info, offset)}
 								toggleTimer={() => toggleTimer(info)}
 								resetTimer={() => resetTimer(info)}
-								value={(info.getValue())}
+								value={info.getValue()}
 							/>
 						);
 					} else {

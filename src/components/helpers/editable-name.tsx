@@ -13,7 +13,7 @@ export default function EditableName({ name, setColumnValue }: { name: any; setC
 			placeholder=''
 		>
 			<Editable.Preview />
-			<Editable.Input/>
+			<Editable.Input />
 			<Editable.Control>
 				{(localName == undefined || localName.length <= 0) && (
 					<Editable.EditTrigger asChild>
