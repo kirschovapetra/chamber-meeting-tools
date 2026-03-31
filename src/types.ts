@@ -30,14 +30,13 @@ type GenericTableType = {
 type TimerRow = {
 	checkbox?: any;
 	time?: any;
-	role: string;
-	speakerName?: string;
+	role?: string;
+	speaker?: string;
 	greenTime?: any;
 	amberTime?: any;
-	redTime: any;
-	resultTime: any;
+	redTime?: any;
+	resultTime?: any;
 	buttons?: any;
-	status: any;
 	tooltipVisible?: any;
 };
 
@@ -48,16 +47,17 @@ type WordCount = {
 
 type AhCounterRow = {
 	checkbox?: any;
-	role: string;
-	speakerName: string;
-	wordCounts: WordCount[];
+	role?: string;
+	speaker?: string;
+	wordCounts?: WordCount[];
 	tooltipVisible?: any;
+	buttons?:any
 };
 
 type GrammarianRow = {
 	checkbox?: any;
-	speaker: string;
-	quote: string;
+	speaker?: string;
+	quote?: string;
 	suggestion?: string;
 	buttons?: any,
 	tooltipVisible?: any;

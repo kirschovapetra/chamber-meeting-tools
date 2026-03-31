@@ -1,3 +1,5 @@
+import { useRef, useEffect } from "react";
+
 export const resetPageData = (id: any) => {
 	localStorage.removeItem(id);
 };
@@ -6,9 +8,8 @@ export const resetSession = () => {
 	localStorage.clear();
 };
 
-export const fetchPageData = (pageId: any) => {
+export const fetchPageData = async (pageId: any) => {
 	try {
-		console.log(pageId)
 		const currentData = localStorage.getItem(pageId) || '[]';
 		const dataParsed = JSON.parse(currentData) || {};
 		return [...dataParsed];
