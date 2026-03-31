@@ -20,12 +20,12 @@ type Product = {
 type Row = TimerRow | AhCounterRow | GrammarianRow;
 
 type GenericTableType = {
-	data:Row[],
-	columns:any[],
-	selection:string[],
-	toggleTooltip:any,
-	deleteSelectedRows:any
-}
+	data: Row[];
+	columns: any[];
+	selection: Set<string>;
+	toggleTooltip?: any;
+	deleteSelectedRows?: any;
+};
 
 type TimerRow = {
 	checkbox?: any;
@@ -47,15 +47,20 @@ type WordCount = {
 };
 
 type AhCounterRow = {
+	checkbox?: any;
 	role: string;
 	speakerName: string;
 	wordCounts: WordCount[];
+	tooltipVisible?: any;
 };
 
 type GrammarianRow = {
-	speakerName: string;
+	checkbox?: any;
+	speaker: string;
 	quote: string;
 	suggestion?: string;
+	buttons?: any,
+	tooltipVisible?: any;
 };
 
 type GrammarianData = {

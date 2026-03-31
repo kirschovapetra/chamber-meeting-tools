@@ -1,11 +1,31 @@
-import GlobalLayout from '@/components/ui/global-layout';
+'use client';
 import NavigationMenu from '@/components/ui/navigation-menu';
+import GrammarianTable from '@/components/ui/grammarian-table';
 
-export default async function Grammarian() {
+export default function Grammarian() {
+	const GRAMMARIAN_DEFAULT = {
+		speaker: '',
+		quote: '',
+		suggestion: '',
+		tooltipVisible: false,
+	};
+
+	const PAGE_ID = 'grammarian';
+
 	return (
 		<>
 			<NavigationMenu />
-			<GlobalLayout title='Grammarian' />
+			<GrammarianTable
+				columnHeaders={['speaker', 'quote', 'suggestion']}
+				defaultRow={GRAMMARIAN_DEFAULT}
+				pageId={PAGE_ID}
+			/>
+
+			{/* <GrammarianTable
+				columnHeaders={['speaker', 'quote']}
+				defaultRow={GRAMMARIAN_DEFAULT}
+				pageId={PAGE_ID}
+			/> */}
 		</>
 	);
 }

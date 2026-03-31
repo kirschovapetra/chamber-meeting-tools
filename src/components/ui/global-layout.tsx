@@ -7,7 +7,7 @@ export default function GlobalLayout({
 	children,
 	reset = () => {},
 	generatePdf = () => {},
-	addRow = () => {}
+	addRow = () => {},
 }: {
 	title: any;
 	children?: React.ReactNode;

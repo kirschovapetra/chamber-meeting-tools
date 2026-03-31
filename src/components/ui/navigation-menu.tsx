@@ -26,7 +26,16 @@ const NavigationMenu = (props: any) => {
 		},
 	];
 	return (
-		<Flex as='nav' align='center' justify='space-between' wrap='wrap' w='100%' mb={2} p={4} {...props}>
+		<Flex
+			as='nav'
+			align='center'
+			justify='space-between'
+			wrap='wrap'
+			w='100%'
+			mb={2}
+			p={4}
+			{...props}
+		>
 			<Link href={'/'}>
 				<Image src='/logo.png' alt='Logo' height='45px' />
 				<Heading marginLeft={2} size='lg' alignSelf={'left'}>
