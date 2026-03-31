@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 
 export const resetPageData = (id: any) => {
 	localStorage.removeItem(id);
@@ -23,8 +23,8 @@ export const storePageData = (pageId: any, data: any) => {
 	localStorage.setItem(pageId, JSON.stringify(data));
 };
 
-export const toCamelCase = (str:string) => {
-	const firstChar = str.charAt(0)
+export const toCamelCase = (str: string) => {
+	const firstChar = str.charAt(0);
 
-	return firstChar.toUpperCase()+str.substring(1)
-}
+	return firstChar.toUpperCase() + str.substring(1);
+};

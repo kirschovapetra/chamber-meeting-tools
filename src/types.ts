@@ -51,7 +51,7 @@ type AhCounterRow = {
 	speaker?: string;
 	wordCounts?: WordCount[];
 	tooltipVisible?: any;
-	buttons?:any
+	buttons?: any;
 };
 
 type GrammarianRow = {
@@ -59,7 +59,7 @@ type GrammarianRow = {
 	speaker?: string;
 	quote?: string;
 	suggestion?: string;
-	buttons?: any,
+	buttons?: any;
 	tooltipVisible?: any;
 };
 

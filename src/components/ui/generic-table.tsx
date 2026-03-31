@@ -69,7 +69,9 @@ export default function GenericTable({
 				<Portal>
 					<ActionBar.Positioner>
 						<ActionBar.Content>
-							<ActionBar.SelectionTrigger>{Array.from(selection).length} selected</ActionBar.SelectionTrigger>
+							<ActionBar.SelectionTrigger>
+								{Array.from(selection).length} selected
+							</ActionBar.SelectionTrigger>
 							<ActionBar.Separator />
 							<Button variant='outline' size='sm' onClick={deleteSelectedRows}>
 								Delete <LuX />
