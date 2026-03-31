@@ -1,18 +1,41 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 import { buttonStyle } from '../styles';
+import LoadingScreen from './loading-screen';
+
+
+function useIsMounted() {
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+	isMounted.current = true;
+
+	return () => {
+	  isMounted.current = false;
+	};
+  });
+
+  return isMounted;
+}
 
 export default function GlobalLayout({
 	title,
 	children,
 	reset = () => {},
 	generatePdf = () => {},
+	addRow = () => {},
+	isMounted=false,
 }: {
 	title: any;
 	children?: React.ReactNode;
 	reset?: any;
 	generatePdf?: any;
+	addRow?: any;
+	isMounted?:boolean;
 }) {
+
+
 	const getDate = () => {
 		const dateObject = new Date();
 		// UTC time 17:15:00
@@ -30,6 +53,10 @@ export default function GlobalLayout({
 		return format.format(dateObject) + ' ' + localTimezone;
 	};
 
+	if (!isMounted) {
+	    return <LoadingScreen/>;
+	}
+
 	return (
 		<Box>
 			<Heading size='3xl' textAlign={'center'}>
@@ -40,6 +67,9 @@ export default function GlobalLayout({
 			</Heading>
 			<Box p={10}>{children}</Box>
 			<Flex justifyContent={'flex-end'}>
+				<Button {...buttonStyle} onClick={addRow}>
+					Add row
+				</Button>
 				<Button {...buttonStyle} onClick={reset}>
 					Reset
 				</Button>
@@ -50,3 +80,4 @@ export default function GlobalLayout({
 		</Box>
 	);
 }
+

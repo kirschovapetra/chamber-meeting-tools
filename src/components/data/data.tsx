@@ -1,20 +1,9 @@
-export const defaultRow = {
-	time: '',
-	role: '',
-	speakerName: '0:00',
-	greenTime: '0:00',
-	amberTime: '0:00',
-	redTime: '0:00',
-	resultTime: '0:00',
-	status: 'Start',
-	tooltipVisible: false,
-};
 
 export const dataTemplate = [
 	{
 		time: '19:15',
 		role: 'Chairperson',
-		speakerName: 'Petra Kirschova',
+		speaker: 'Petra Kirschova',
 		greenTime: '4:00',
 		amberTime: '5:00',
 		redTime: '6:00',
@@ -24,7 +13,7 @@ export const dataTemplate = [
 	},
 	{
 		role: 'Toastmaster',
-		speakerName: 'Dzvinka Plaksii',
+		speaker: 'Dzvinka Plaksii',
 		greenTime: '6:00',
 		amberTime: '7:00',
 		redTime: '8:00',
@@ -34,7 +23,7 @@ export const dataTemplate = [
 	},
 	{
 		role: 'Timer',
-		speakerName: 'Petra Kirschova',
+		speaker: 'Petra Kirschova',
 		greenTime: '1:00',
 		amberTime: '1:30',
 		redTime: '2:00',
@@ -44,7 +33,7 @@ export const dataTemplate = [
 	},
 	// {
 	// 	role: 'Ah Counter',
-	// 	speakerName: 'Svitlana Sydorenko',
+	// 	speaker: 'Svitlana Sydorenko',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -54,7 +43,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Grammarian',
-	// 	speakerName: 'Nicolas Macak',
+	// 	speaker: 'Nicolas Macak',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -64,7 +53,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Zoom Spotlight',
-	// 	speakerName: 'Benjamin Oommen',
+	// 	speaker: 'Benjamin Oommen',
 	// 	redTime: '1:00',
 	// 	resultTime: '0:00',
 	// 	status: 'Start',
@@ -73,7 +62,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '19:36',
 	// 	role: 'Toastmaster',
-	// 	speakerName: 'Dzvinka Plaksii',
+	// 	speaker: 'Dzvinka Plaksii',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -83,7 +72,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Speaker 1',
-	// 	speakerName: 'Camilo Correa',
+	// 	speaker: 'Camilo Correa',
 	// 	greenTime: '5:00',
 	// 	amberTime: '6:00',
 	// 	redTime: '7:00',
@@ -93,7 +82,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Break',
-	// 	speakerName: '',
+	// 	speaker: '',
 	// 	redTime: '1:00',
 	// 	resultTime: '0:00',
 	// 	status: 'Start',
@@ -101,7 +90,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Speaker 2',
-	// 	speakerName: 'Nicolas Macak',
+	// 	speaker: 'Nicolas Macak',
 	// 	greenTime: '5:00',
 	// 	amberTime: '6:00',
 	// 	redTime: '7:00',
@@ -111,7 +100,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Break',
-	// 	speakerName: '',
+	// 	speaker: '',
 	// 	redTime: '1:00',
 	// 	resultTime: '0:00',
 	// 	status: 'Start',
@@ -120,7 +109,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '19:46',
 	// 	role: 'Table Topic Master',
-	// 	speakerName: 'Scott Clark',
+	// 	speaker: 'Scott Clark',
 	// 	greenTime: '13:00',
 	// 	amberTime: '14:00',
 	// 	redTime: '15:00',
@@ -130,7 +119,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Break',
-	// 	speakerName: '',
+	// 	speaker: '',
 	// 	redTime: '1:00',
 	// 	resultTime: '0:00',
 	// 	status: 'Start',
@@ -139,7 +128,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '20:12',
 	// 	role: 'Toastmaster',
-	// 	speakerName: 'Dzvinka Plaksii',
+	// 	speaker: 'Dzvinka Plaksii',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -150,7 +139,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '20:12',
 	// 	role: 'Evaluator 1',
-	// 	speakerName: 'Karolina Sulcova',
+	// 	speaker: 'Karolina Sulcova',
 	// 	greenTime: '2:00',
 	// 	amberTime: '2:30',
 	// 	redTime: '3:00',
@@ -160,7 +149,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Evaluator 2',
-	// 	speakerName: 'Scott Clark',
+	// 	speaker: 'Scott Clark',
 	// 	greenTime: '2:00',
 	// 	amberTime: '2:30',
 	// 	redTime: '3:00',
@@ -170,7 +159,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Table Topics Evaluator',
-	// 	speakerName: 'Benjamin Oommen',
+	// 	speaker: 'Benjamin Oommen',
 	// 	greenTime: '3:00',
 	// 	amberTime: '4:00',
 	// 	redTime: '5:00',
@@ -180,7 +169,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Break',
-	// 	speakerName: '',
+	// 	speaker: '',
 	// 	redTime: '1:00',
 	// 	resultTime: '0:00',
 	// 	status: 'Start',
@@ -189,7 +178,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '20:25',
 	// 	role: 'Toastmaster',
-	// 	speakerName: 'Dzvinka Plaksii',
+	// 	speaker: 'Dzvinka Plaksii',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -200,7 +189,7 @@ export const dataTemplate = [
 
 	// {
 	// 	role: 'Grammarian',
-	// 	speakerName: 'Nicolas Macak',
+	// 	speaker: 'Nicolas Macak',
 	// 	greenTime: '3:00',
 	// 	amberTime: '4:00',
 	// 	redTime: '5:00',
@@ -210,7 +199,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Timer',
-	// 	speakerName: 'Petra Kirschova',
+	// 	speaker: 'Petra Kirschova',
 	// 	greenTime: '',
 	// 	amberTime: '',
 	// 	redTime: '1:00',
@@ -220,7 +209,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Ah Counter',
-	// 	speakerName: 'Svitlana Sydorenko',
+	// 	speaker: 'Svitlana Sydorenko',
 	// 	greenTime: '',
 	// 	amberTime: '',
 	// 	redTime: '1:00',
@@ -230,7 +219,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'General Evaluator',
-	// 	speakerName: 'Liubov Tysovska',
+	// 	speaker: 'Liubov Tysovska',
 	// 	greenTime: '6:00',
 	// 	amberTime: '7:00',
 	// 	redTime: '8:00',
@@ -240,7 +229,7 @@ export const dataTemplate = [
 	// },
 	// {
 	// 	role: 'Toastmaster',
-	// 	speakerName: 'Dzvinka Plaksii',
+	// 	speaker: 'Dzvinka Plaksii',
 	// 	greenTime: '1:00',
 	// 	amberTime: '1:30',
 	// 	redTime: '2:00',
@@ -251,7 +240,7 @@ export const dataTemplate = [
 	// {
 	// 	time: '20:43',
 	// 	role: 'Chairperson',
-	// 	speakerName: 'Petra Kirschova',
+	// 	speaker: 'Petra Kirschova',
 	// 	greenTime: '',
 	// 	amberTime: '',
 	// 	redTime: '1:00',
