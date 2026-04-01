@@ -17,15 +17,13 @@ export default function Timer() {
 		tooltipVisible: false,
 	};
 
-	const PAGE_ID = PageType.TIMER;
-
 	return (
 		<>
 			<NavigationMenu />
 			<TablePageWrapper
 				columnHeaders={['role', 'speaker', 'greenTime', 'amberTime', 'redTime', 'resultTime']}
 				defaultRow={TIMER_DEFAULT}
-				pageId={PAGE_ID}
+				pageId={PageType.TIMER}
 			/>
 		</>
 	);

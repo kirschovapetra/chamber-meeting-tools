@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { toHeader, toRoute } from '@/script';
 import { PageType } from '@/types';
 
-
 const NavigationMenu = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);

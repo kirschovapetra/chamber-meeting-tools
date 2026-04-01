@@ -10,7 +10,6 @@ export default function AhCounterCell({
 	setColumnValue: any;
 	label?: string;
 }) {
-
 	return (
 		<Field.Root>
 			<Field.Label>{toHeader(label || '')}</Field.Label>

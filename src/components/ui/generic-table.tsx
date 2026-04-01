@@ -15,6 +15,7 @@ export default function GenericTable({
 	selection,
 	toggleTooltip,
 	deleteSelectedRows,
+	subtitle,
 }: GenericTableType) {
 	const table = useReactTable({
 		data,
@@ -27,7 +28,10 @@ export default function GenericTable({
 	return (
 		<>
 			<Table.ScrollArea>
-				<Table.Root interactive size='sm' variant='line' native>
+				<Table.Root interactive stickyHeader size='sm' variant='line' native>
+					<Table.Caption captionSide='top' fontSize={'sm'} marginBottom={1}>
+						{subtitle || ''}
+					</Table.Caption>
 					<Table.Header>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<Table.Row bg='bg.subtle' key={headerGroup.id}>

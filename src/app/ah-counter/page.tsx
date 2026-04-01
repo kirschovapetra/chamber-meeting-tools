@@ -22,15 +22,13 @@ export default function AhCounter() {
 		tooltipVisible: false,
 	};
 
-	const PAGE_ID = PageType.AH_COUNTER;
-
 	return (
 		<>
 			<NavigationMenu />
 			<TablePageWrapper
 				columnHeaders={['role', 'speaker']}
 				defaultRow={AH_COUNTER_DEFAULT}
-				pageId={PAGE_ID}
+				pageId={PageType.AH_COUNTER}
 			/>
 		</>
 	);

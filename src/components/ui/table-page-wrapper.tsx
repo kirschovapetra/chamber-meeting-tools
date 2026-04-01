@@ -26,10 +26,14 @@ export default function TablePageWrapper({
 	columnHeaders,
 	defaultRow,
 	pageId,
+	showHeading,
+	subtitle,
 }: {
 	columnHeaders: string[];
 	defaultRow: Row;
 	pageId: string;
+	showHeading?: boolean;
+	subtitle?: string;
 }) {
 	const [data, setData] = useState<Row[]>([]);
 	const [selection, setSelection] = useState<Set<string>>(new Set<string>());
@@ -146,17 +150,14 @@ export default function TablePageWrapper({
 		}),
 		...[
 			columnHelper.accessor('generic', {
-				header: `${pageId == PageType.AH_COUNTER && 'Word Counts'}`,
+				header: `${pageId == PageType.AH_COUNTER ? 'Word Counts' : ''}`,
 				cell: (info: any) => {
-					if (pageId == PageType.GRAMMARIAN) {
-						return <AddRowMenu insertRow={(offset: any) => insertRow(info, offset)} />;
-					} else if (pageId == PageType.TIMER) {
+					if (pageId == PageType.TIMER) {
 						return (
 							<RowButtons
 								insertRow={(offset: any) => insertRow(info, offset)}
 								toggleTimer={() => toggleTimer(info)}
 								resetTimer={() => resetTimer(info)}
-								value={info.getValue()}
 								value={info.getValue()}
 							/>
 						);
@@ -172,6 +173,8 @@ export default function TablePageWrapper({
 								<AddRowMenu insertRow={(offset: any) => insertRow(info, offset)} />
 							</HStack>
 						);
+					} else if (/grammarian.*/.test(pageId)) {
+						return <AddRowMenu insertRow={(offset: any) => insertRow(info, offset)} />;
 					} else {
 						return <></>;
 					}
@@ -185,8 +188,8 @@ export default function TablePageWrapper({
 			title={toHeader(pageId)}
 			addRow={addRow}
 			reset={resetData}
-			generatePdf={() => console.log('generate pdf')}
 			isMounted={isMountedRef.current}
+			showHeading={showHeading}
 			children={
 				<GenericTable
 					data={data}
@@ -194,6 +197,7 @@ export default function TablePageWrapper({
 					selection={selection}
 					toggleTooltip={toggleTooltip}
 					deleteSelectedRows={deleteSelectedRows}
+					subtitle={subtitle}
 				/>
 			}
 		/>

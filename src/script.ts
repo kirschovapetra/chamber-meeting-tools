@@ -24,11 +24,11 @@ export const storePageData = (pageId: any, data: any) => {
 export const toHeader = (str: string) => {
 	const splitString: string[] = str.split('_');
 	const splitStringUppercase: string[] = splitString.map(
-		(s: string) => s.charAt(0).toUpperCase() + s.substring(1)
+		(s: string) => s.charAt(0).toUpperCase() + s.substring(1),
 	);
 	return splitStringUppercase.join(' ');
 };
 
 export const toRoute = (str: string) => {
-	return '/'+str.split('_').join('-');
+	return '/' + str.split('_').join('-');
 };
