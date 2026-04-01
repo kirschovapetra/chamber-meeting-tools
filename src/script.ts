@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react';
-
 export const resetPageData = (id: any) => {
 	localStorage.removeItem(id);
 };
@@ -23,8 +21,14 @@ export const storePageData = (pageId: any, data: any) => {
 	localStorage.setItem(pageId, JSON.stringify(data));
 };
 
-export const toCamelCase = (str: string) => {
-	const firstChar = str.charAt(0);
+export const toHeader = (str: string) => {
+	const splitString: string[] = str.split('_');
+	const splitStringUppercase: string[] = splitString.map(
+		(s: string) => s.charAt(0).toUpperCase() + s.substring(1)
+	);
+	return splitStringUppercase.join(' ');
+};
 
-	return firstChar.toUpperCase() + str.substring(1);
+export const toRoute = (str: string) => {
+	return '/'+str.split('_').join('-');
 };

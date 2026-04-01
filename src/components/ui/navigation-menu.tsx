@@ -1,10 +1,11 @@
 'use client';
-import React, { useState } from 'react';
-import { Box, Flex, Image, HStack, Link, Heading } from '@chakra-ui/react';
-import { IoMdClose } from 'react-icons/io';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { useState } from 'react';
+import { Flex, Image, HStack, Link, Heading } from '@chakra-ui/react';
 import { ColorModeButton } from '@/components/ui/color-mode';
 import { usePathname } from 'next/navigation';
+import { toHeader, toRoute } from '@/script';
+import { PageType } from '@/types';
+
 
 const NavigationMenu = (props: any) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -14,15 +15,19 @@ const NavigationMenu = (props: any) => {
 	const links = [
 		{ name: 'Home', href: '/', selected: pathname === '/' },
 		{
-			name: 'Ah Counter',
-			href: '/ahcounter',
-			selected: pathname === '/ahcounter',
+			name: toHeader(PageType.AH_COUNTER),
+			href: toRoute(PageType.AH_COUNTER),
+			selected: pathname === toRoute(PageType.AH_COUNTER),
 		},
-		{ name: 'Timer', href: '/timer', selected: pathname === '/timer' },
 		{
-			name: 'Grammarian',
-			href: '/grammarian',
-			selected: pathname === '/grammarian',
+			name: toHeader(PageType.TIMER),
+			href: toRoute(PageType.TIMER),
+			selected: pathname === toRoute(PageType.TIMER),
+		},
+		{
+			name: toHeader(PageType.GRAMMARIAN),
+			href: toRoute(PageType.GRAMMARIAN),
+			selected: pathname === toRoute(PageType.GRAMMARIAN),
 		},
 	];
 	return (

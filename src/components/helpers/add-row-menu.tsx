@@ -1,5 +1,5 @@
 import { Button, IconButton, Menu, Portal } from '@chakra-ui/react';
-import { buttonStyle } from '../styles';
+import { buttonStyle } from '../../styles';
 import { useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 
