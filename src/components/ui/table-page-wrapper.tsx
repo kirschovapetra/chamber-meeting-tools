@@ -1,24 +1,24 @@
 import AddRowMenu from '@/components/helpers/add-row-menu';
-import EditableName from '@/components/helpers/editable-name';
+import EditableCell from '@/components/helpers/editable-cell';
 import GenericTable from '@/components/ui/generic-table';
 import GlobalLayout from '@/components/ui/global-layout';
 import TableCheckbox from '@/components/helpers/table-checkbox';
-import { fetchPageData, resetPageData, storePageData, toCamelCase } from '@/script';
+import { fetchPageData, resetPageData, storePageData, toHeader } from '@/script';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useState, useEffect, useRef } from 'react';
 import RowButtons from '../helpers/row-buttons';
+import AhCounterRow from '../helpers/ah-counter-row';
+import { PageType, Row, TimerRow } from '@/types';
+import { HStack } from '@chakra-ui/react';
 
 function useIsMounted() {
 	const isMounted = useRef(false);
-
 	useEffect(() => {
 		isMounted.current = true;
-
 		return () => {
 			isMounted.current = false;
 		};
 	});
-
 	return isMounted;
 }
 
@@ -46,7 +46,7 @@ export default function TablePageWrapper({
 	}, [isMountedRef]);
 
 	const addRow = () => {
-		updateData([...data, {...defaultRow}]);
+		updateData([...data, { ...defaultRow }]);
 		setSelection(new Set());
 	};
 
@@ -88,8 +88,7 @@ export default function TablePageWrapper({
 	};
 
 	const insertRow = (info: any, offset: number) => {
-		console.log(info.row.index)
-		updateData(data.toSpliced(info.row.index + offset, 0, {...defaultRow}));
+		updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow }));
 		setSelection(new Set());
 	};
 
@@ -98,9 +97,8 @@ export default function TablePageWrapper({
 	const toggleTimer = (info: any) => {
 		const dataObjIdx = info.row.index;
 		const dataObj = data.at(dataObjIdx) as TimerRow;
-		console.log(dataObj)
 		if (dataObj !== undefined) {
-			dataObj.buttons = dataObj.buttons == 'Start' ? 'Stop' : 'Start';
+			dataObj.generic = dataObj.generic == 'Start' ? 'Stop' : 'Start';
 			updateData(
 				data.map((val, i) => {
 					return i == dataObjIdx ? dataObj : val;
@@ -112,7 +110,7 @@ export default function TablePageWrapper({
 		const dataObjIdx = info.row.index;
 		const dataObj = data.at(dataObjIdx) as TimerRow;
 		if (dataObj !== undefined) {
-			dataObj.buttons = 'Start';
+			dataObj.generic = 'Start';
 			dataObj.resultTime = '0:00';
 			updateData(
 				data.map((val, i) => {
@@ -121,11 +119,6 @@ export default function TablePageWrapper({
 			);
 		}
 	};
-
-	// const getStatus = (info: any) => {
-	// 	const dataObj = data.at(info.row.index) as TimerRow;
-	// 	return (dataObj !== undefined) ? dataObj.status : '';
-	// }; 
 
 	const columns = [
 		...[
@@ -138,11 +131,11 @@ export default function TablePageWrapper({
 		],
 		...columnHeaders.map((header: any) => {
 			return columnHelper.accessor(header, {
-				header: () => <EditableName name={toCamelCase(header)} setColumnValue={() => {}} />,
+				header: () => <EditableCell value={toHeader(header)} setColumnValue={() => {}} />,
 				cell: (info: any) => {
 					return (
-						<EditableName
-							name={info.getValue() || ''}
+						<EditableCell
+							value={info.getValue() || ''}
 							setColumnValue={(val: any) => {
 								setColumnValue(header, info.row.index, val);
 							}}
@@ -152,19 +145,31 @@ export default function TablePageWrapper({
 			});
 		}),
 		...[
-			columnHelper.accessor('buttons', {
-				header: '',
+			columnHelper.accessor('generic', {
+				header: `${pageId == PageType.AH_COUNTER && 'Word Counts'}`,
 				cell: (info: any) => {
-					if (pageId == 'grammarian') {
+					if (pageId == PageType.GRAMMARIAN) {
 						return <AddRowMenu insertRow={(offset: any) => insertRow(info, offset)} />;
-					} else if (pageId == 'timer') {
+					} else if (pageId == PageType.TIMER) {
 						return (
 							<RowButtons
 								insertRow={(offset: any) => insertRow(info, offset)}
 								toggleTimer={() => toggleTimer(info)}
 								resetTimer={() => resetTimer(info)}
-								value={(info.getValue())}
+								value={info.getValue()}
 							/>
+						);
+					} else if (pageId == PageType.AH_COUNTER) {
+						return (
+							<HStack>
+								<AhCounterRow
+									wordCounts={info.getValue()}
+									setColumnValue={(val: any) => {
+										setColumnValue('generic', info.row.index, val);
+									}}
+								/>
+								<AddRowMenu insertRow={(offset: any) => insertRow(info, offset)} />
+							</HStack>
 						);
 					} else {
 						return <></>;
@@ -176,7 +181,7 @@ export default function TablePageWrapper({
 
 	return (
 		<GlobalLayout
-			title={toCamelCase(pageId)}
+			title={toHeader(pageId)}
 			addRow={addRow}
 			reset={resetData}
 			generatePdf={() => console.log('generate pdf')}

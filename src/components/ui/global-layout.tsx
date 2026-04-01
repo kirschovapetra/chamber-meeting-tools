@@ -1,23 +1,7 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { Box, Button, Flex, Heading } from '@chakra-ui/react';
-import { buttonStyle } from '../styles';
+import { Box, Button, Flex, Heading, NumberInput } from '@chakra-ui/react';
+import { buttonStyle } from '../../styles';
 import LoadingScreen from './loading-screen';
-
-
-function useIsMounted() {
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-	isMounted.current = true;
-
-	return () => {
-	  isMounted.current = false;
-	};
-  });
-
-  return isMounted;
-}
 
 export default function GlobalLayout({
 	title,
@@ -77,6 +61,10 @@ export default function GlobalLayout({
 					Export PDF
 				</Button>
 			</Flex>
+
+
+
+
 		</Box>
 	);
 }

@@ -1,5 +1,4 @@
-// 'use client';
-
+import { GenericTableType } from '@/types';
 import { ActionBar, Button, Portal, Table } from '@chakra-ui/react';
 import {
 	flexRender,

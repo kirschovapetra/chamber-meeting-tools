@@ -1,6 +1,7 @@
 'use client';
 import NavigationMenu from '@/components/ui/navigation-menu';
 import TablePageWrapper from '@/components/ui/table-page-wrapper';
+import { PageType } from '@/types';
 
 export default function Grammarian() {
 	const GRAMMARIAN_DEFAULT = {
@@ -10,7 +11,7 @@ export default function Grammarian() {
 		tooltipVisible: false,
 	};
 
-	const PAGE_ID = 'grammarian';
+	const PAGE_ID = PageType.GRAMMARIAN;
 
 	return (
 		<>

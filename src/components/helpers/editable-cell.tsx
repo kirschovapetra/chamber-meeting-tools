@@ -1,21 +1,28 @@
-import { Editable, IconButton } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Editable, IconButton, VStack } from '@chakra-ui/react';
+import { useState } from 'react';
 import { LuCheck, LuPencilLine, LuX } from 'react-icons/lu';
 
-export default function EditableName({ name, setColumnValue }: { name: any; setColumnValue: any }) {
-	const [localName, setLocalName] = useState(name);
-
+export default function EditableCell({
+	value,
+	setColumnValue,
+	type = 'text',
+}: {
+	value: any;
+	setColumnValue: any;
+	type?: string;
+}) {
+	const [localValue, setLocalValue] = useState(value);
 	return (
 		<Editable.Root
-			value={localName}
-			onValueChange={(e) => setLocalName(e.value)}
-			onValueCommit={(e) => setColumnValue(localName)}
+			value={localValue.toString()}
+			onValueChange={(e) => setLocalValue(e.value)}
+			onValueCommit={(e) => setColumnValue(localValue)}
 			placeholder=''
 		>
 			<Editable.Preview />
-			<Editable.Input/>
+			<Editable.Input type={type} />
 			<Editable.Control>
-				{(localName == undefined || localName.length <= 0) && (
+				{(localValue == undefined || localValue.toString().length <= 0) && (
 					<Editable.EditTrigger asChild>
 						<IconButton variant='ghost' size='xs'>
 							<LuPencilLine />
