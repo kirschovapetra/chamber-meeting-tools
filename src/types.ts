@@ -2,6 +2,9 @@ export enum PageType {
 	TIMER = 'timer',
 	AH_COUNTER = 'ah_counter',
 	GRAMMARIAN = 'grammarian',
+	GRAMMARIAN_WOTD = 'grammarian_wotd',
+	GRAMMARIAN_ERRORS = 'grammarian_errors',
+	GRAMMARIAN_QUOTES = 'grammarian_quotes',
 }
 
 export type GenericTableType = {
@@ -10,6 +13,7 @@ export type GenericTableType = {
 	selection: Set<string>;
 	toggleTooltip?: any;
 	deleteSelectedRows?: any;
+	subtitle?: string;
 };
 
 export type Row = {

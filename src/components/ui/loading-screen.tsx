@@ -1,4 +1,4 @@
-import { Spinner, Text, VStack } from "@chakra-ui/react"
+import { Spinner, Text, VStack } from '@chakra-ui/react';
 
 export default function LoadingScreen() {
 	return (

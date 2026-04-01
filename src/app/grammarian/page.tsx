@@ -7,19 +7,30 @@ export default function Grammarian() {
 	const GRAMMARIAN_DEFAULT = {
 		speaker: '',
 		quote: '',
-		suggestion: '',
 		tooltipVisible: false,
 	};
-
-	const PAGE_ID = PageType.GRAMMARIAN;
-
 	return (
 		<>
 			<NavigationMenu />
 			<TablePageWrapper
+				columnHeaders={['speaker', 'quote']}
+				defaultRow={GRAMMARIAN_DEFAULT}
+				pageId={PageType.GRAMMARIAN_WOTD}
+				subtitle='List those who used the word of the day'
+			/>
+			<TablePageWrapper
 				columnHeaders={['speaker', 'quote', 'suggestion']}
 				defaultRow={GRAMMARIAN_DEFAULT}
-				pageId={PAGE_ID}
+				pageId={PageType.GRAMMARIAN_ERRORS}
+				showHeading={false}
+				subtitle='Improper Grammatical Uses/Suggestions for Improvements'
+			/>
+			<TablePageWrapper
+				columnHeaders={['speaker', 'quote', 'suggestion']}
+				defaultRow={GRAMMARIAN_DEFAULT}
+				pageId={PageType.GRAMMARIAN_QUOTES}
+				showHeading={false}
+				subtitle='List Quotes, Thoughts, Words, or Sayings that you Liked'
 			/>
 		</>
 	);
