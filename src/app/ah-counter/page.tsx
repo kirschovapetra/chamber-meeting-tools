@@ -29,6 +29,7 @@ export default function AhCounter() {
 				columnHeaders={['role', 'speaker']}
 				defaultRow={AH_COUNTER_DEFAULT}
 				pageId={PageType.AH_COUNTER}
+				showCrutchWordButton={true}
 			/>
 		</>
 	);

@@ -6,6 +6,11 @@ export enum PageType {
 	GRAMMARIAN_ERRORS = 'grammarian_errors',
 	GRAMMARIAN_QUOTES = 'grammarian_quotes',
 }
+export interface DialogProps {
+	title: string;
+	description?: string;
+	content?: React.ReactNode;
+}
 
 export type GenericTableType = {
 	data: Row[];

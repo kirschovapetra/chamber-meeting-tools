@@ -26,7 +26,7 @@ export default function Grammarian() {
 				subtitle='Improper Grammatical Uses/Suggestions for Improvements'
 			/>
 			<TablePageWrapper
-				columnHeaders={['speaker', 'quote', 'suggestion']}
+				columnHeaders={['speaker', 'quote']}
 				defaultRow={GRAMMARIAN_DEFAULT}
 				pageId={PageType.GRAMMARIAN_QUOTES}
 				showHeading={false}
