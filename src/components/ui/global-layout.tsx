@@ -1,7 +1,18 @@
 'use client';
-import { Box, Button, CloseButton, Dialog, Flex, Heading, Portal } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	CloseButton,
+	createOverlay,
+	Dialog,
+	Flex,
+	Heading,
+	Portal,
+} from '@chakra-ui/react';
 import { buttonStyle } from '../../styles';
 import LoadingScreen from './loading-screen';
+import { dialog } from '../helpers/popup-dialog';
+import DialogContent from '../helpers/dialog-buttons';
 
 export default function GlobalLayout({
 	title,
@@ -10,6 +21,8 @@ export default function GlobalLayout({
 	addRow = () => {},
 	isMounted = false,
 	showHeading = true,
+	showCrutchWordButton = false,
+	addCrutchWord
 }: {
 	title: any;
 	children?: React.ReactNode;
@@ -18,6 +31,8 @@ export default function GlobalLayout({
 	isMounted?: boolean;
 	showHeading?: boolean;
 	showshowHeadingTime?: boolean;
+	showCrutchWordButton?: boolean;
+	addCrutchWord?:any
 }) {
 	const getDate = () => {
 		const dateObject = new Date();
@@ -59,39 +74,35 @@ export default function GlobalLayout({
 				<Button {...buttonStyle} onClick={addRow}>
 					Add row
 				</Button>
-				<Dialog.Root>
-					<Dialog.Trigger asChild>
-						<Button {...buttonStyle}>Reset</Button>
-					</Dialog.Trigger>
-					<Portal>
-						<Dialog.Backdrop />
-						<Dialog.Positioner>
-							<Dialog.Content>
-								<Dialog.Header>
-									<Dialog.Title>Are you sure?</Dialog.Title>
-								</Dialog.Header>
-								<Dialog.Body>
-									<p>All your progress will be deleted.</p>
-								</Dialog.Body>
-								<Dialog.Footer>
-									<Dialog.ActionTrigger asChild>
-										<Button {...buttonStyle} variant='outline'>
-											Cancel
-										</Button>
-									</Dialog.ActionTrigger>
-									<Dialog.ActionTrigger asChild>
-										<Button {...buttonStyle} onClick={reset}>
-											OK
-										</Button>
-									</Dialog.ActionTrigger>
-								</Dialog.Footer>
-								<Dialog.CloseTrigger asChild>
-									<CloseButton size='sm' />
-								</Dialog.CloseTrigger>
-							</Dialog.Content>
-						</Dialog.Positioner>
-					</Portal>
-				</Dialog.Root>
+				<Button
+					{...buttonStyle}
+					onClick={() => {
+						dialog.open('are_you_sure', {
+							title: 'Are you sure?',
+							content: (
+								<DialogContent description={'All your progress will be deleted.'} onClick={() => reset()} />
+							),
+						});
+					}}
+				>
+					Reset
+				</Button>
+
+				{showCrutchWordButton && (
+					<Button
+						{...buttonStyle}
+						onClick={() => {
+							dialog.open('crutch_word', {
+								title: 'Add Crutch Word:',
+								content: <DialogContent showInput={true} onClick={(newVal:any) => addCrutchWord(newVal)} />,
+							});
+						}}
+					>
+						Add Crutch Word
+					</Button>
+				)}
+
+				<dialog.Viewport />
 			</Flex>
 		</Box>
 	);

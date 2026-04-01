@@ -28,12 +28,14 @@ export default function TablePageWrapper({
 	pageId,
 	showHeading,
 	subtitle,
+	showCrutchWordButton,
 }: {
 	columnHeaders: string[];
 	defaultRow: Row;
 	pageId: string;
 	showHeading?: boolean;
 	subtitle?: string;
+	showCrutchWordButton?: boolean;
 }) {
 	const [data, setData] = useState<Row[]>([]);
 	const [selection, setSelection] = useState<Set<string>>(new Set<string>());
@@ -48,22 +50,18 @@ export default function TablePageWrapper({
 
 		fetchData();
 	}, [isMountedRef]);
-
 	const addRow = () => {
 		updateData([...data, { ...defaultRow }]);
 		setSelection(new Set());
 	};
-
 	const updateData = (newData: any, local: boolean = false) => {
 		if (!local) storePageData(pageId, newData);
 		setData(newData);
 	};
-
 	const resetData = async () => {
 		resetPageData(pageId);
 		setData(await fetchPageData(pageId));
 	};
-
 	const toggleTooltip = (dataObjIdx: any, visible: boolean) => {
 		setColumnValue('tooltipVisible', dataObjIdx, visible, true);
 	};
@@ -90,14 +88,10 @@ export default function TablePageWrapper({
 		updateData(data.filter((val, i) => !Array.from(selection).includes(i.toString())));
 		setSelection(new Set());
 	};
-
 	const insertRow = (info: any, offset: number) => {
 		updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow }));
 		setSelection(new Set());
 	};
-
-	const columnHelper = createColumnHelper<Row>();
-
 	const toggleTimer = (info: any) => {
 		const dataObjIdx = info.row.index;
 		const dataObj = data.at(dataObjIdx) as TimerRow;
@@ -123,7 +117,40 @@ export default function TablePageWrapper({
 			);
 		}
 	};
+	const addCrutchWord = (newVal: any) => {
+		const temp = data.at(0);
+		if (temp !== undefined) {
+			const keys = Object.keys(temp.generic).map((word) => word.toLowerCase());
+			if (keys.includes(newVal.toLowerCase())) return;
+		}
 
+		updateData(
+			data.map((row) => {
+				return {
+					...row,
+					['generic']: { ...row.generic, [newVal]: 0 },
+				};
+			}),
+		);
+	};
+	const deleteCrutchWord = (word: string) => {
+		const temp = data.at(0);
+		if (temp !== undefined) {
+			const keys = Object.keys(temp.generic).map((word) => word.toLowerCase());
+			if (!keys.includes(word.toLowerCase())) return;
+		}
+		updateData(
+			data.map((row) => {
+				const { [word]: _, ...rest } = row.generic; 
+				return {
+					...row,
+					generic: rest,
+				};
+			}),
+		);
+	};
+
+	const columnHelper = createColumnHelper<Row>();
 	const columns = [
 		...[
 			columnHelper.accessor('checkbox', {
@@ -165,6 +192,7 @@ export default function TablePageWrapper({
 						return (
 							<HStack>
 								<AhCounterRow
+									deleteCrutchWord={deleteCrutchWord}
 									wordCounts={info.getValue()}
 									setColumnValue={(val: any) => {
 										setColumnValue('generic', info.row.index, val);
@@ -190,6 +218,8 @@ export default function TablePageWrapper({
 			reset={resetData}
 			isMounted={isMountedRef.current}
 			showHeading={showHeading}
+			showCrutchWordButton={showCrutchWordButton}
+			addCrutchWord={addCrutchWord}
 			children={
 				<GenericTable
 					data={data}
