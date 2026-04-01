@@ -21,7 +21,7 @@ export default function RowButtons({
 			<Button {...buttonStyle} onClick={resetTimer}>
 				Reset
 			</Button>
-			<AddRowMenu insertRow={insertRow}/>
+			<AddRowMenu insertRow={insertRow} />
 		</>
 	);
 }

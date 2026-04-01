@@ -9,17 +9,15 @@ export default function GlobalLayout({
 	reset = () => {},
 	generatePdf = () => {},
 	addRow = () => {},
-	isMounted=false,
+	isMounted = false,
 }: {
 	title: any;
 	children?: React.ReactNode;
 	reset?: any;
 	generatePdf?: any;
 	addRow?: any;
-	isMounted?:boolean;
+	isMounted?: boolean;
 }) {
-
-
 	const getDate = () => {
 		const dateObject = new Date();
 		// UTC time 17:15:00
@@ -38,7 +36,7 @@ export default function GlobalLayout({
 	};
 
 	if (!isMounted) {
-	    return <LoadingScreen/>;
+		return <LoadingScreen />;
 	}
 
 	return (
@@ -68,4 +66,3 @@ export default function GlobalLayout({
 		</Box>
 	);
 }
-

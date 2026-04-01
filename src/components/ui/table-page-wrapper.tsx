@@ -157,6 +157,7 @@ export default function TablePageWrapper({
 								toggleTimer={() => toggleTimer(info)}
 								resetTimer={() => resetTimer(info)}
 								value={info.getValue()}
+								value={info.getValue()}
 							/>
 						);
 					} else if (pageId == PageType.AH_COUNTER) {
