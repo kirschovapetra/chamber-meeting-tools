@@ -4,11 +4,7 @@ import { buttonStyle } from '../../styles';
 import { useState } from 'react';
 import { LuCirclePlus } from 'react-icons/lu';
 
-export default function AddRowMenu({
-	insertRow,
-}: {
-	insertRow: any;
-}) {
+export default function AddRowMenu({ insertRow }: { insertRow: any }) {
 	const [open, setOpen] = useState(false);
 	return (
 		<>

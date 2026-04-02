@@ -14,8 +14,8 @@ export const dialog = createOverlay<DialogProps>((props) => {
 								<Dialog.Title>{title}</Dialog.Title>
 							</Dialog.Header>
 						)}
-						
-                       {content}
+
+						{content}
 					</Dialog.Content>
 				</Dialog.Positioner>
 			</Portal>

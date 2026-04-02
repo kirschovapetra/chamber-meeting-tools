@@ -8,7 +8,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { useState, useEffect, useRef } from 'react';
 import RowButtons from '../helpers/row-buttons';
 import AhCounterRow from '../helpers/ah-counter-row';
-import { PageType, Row, TimerRow } from '@/types';
+import { GENERIC_DEFAULT, PageType, Row, TimerRow } from '@/types';
 import { HStack } from '@chakra-ui/react';
 
 function useIsMounted() {
@@ -39,19 +39,31 @@ export default function TablePageWrapper({
 }) {
 	const [data, setData] = useState<Row[]>([]);
 	const [selection, setSelection] = useState<Set<string>>(new Set<string>());
+	const [generic, setGeneric] = useState<any>(GENERIC_DEFAULT);
 	const isMountedRef = useIsMounted();
+
+	const GENERIC_ID = PageType.AH_COUNTER + '_generic';
+
 	useEffect(() => {
 		async function fetchData() {
+			const genericResult = localStorage.getItem(GENERIC_ID) || null;
+
 			const result = await fetchPageData(pageId);
 			if (isMountedRef.current) {
 				setData(result);
+				if (genericResult !== null) setGeneric(JSON.parse(genericResult));
+				else localStorage.setItem(GENERIC_ID, JSON.stringify(GENERIC_DEFAULT));
 			}
 		}
 
 		fetchData();
 	}, [isMountedRef]);
 	const addRow = () => {
-		updateData([...data, { ...defaultRow }]);
+		if (pageId === PageType.AH_COUNTER) {
+			updateData([...data, { ...defaultRow, ['generic']: generic }]);
+		} else {
+			updateData([...data, { ...defaultRow }]);
+		}
 		setSelection(new Set());
 	};
 	const updateData = (newData: any, local: boolean = false) => {
@@ -89,7 +101,12 @@ export default function TablePageWrapper({
 		setSelection(new Set());
 	};
 	const insertRow = (info: any, offset: number) => {
-		updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow }));
+		if (pageId === PageType.AH_COUNTER) {
+			updateData([...data]);
+			updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow, ['generic']: generic }));
+		} else {
+			updateData(data.toSpliced(info.row.index + offset, 0, { ...defaultRow }));
+		}
 		setSelection(new Set());
 	};
 	const toggleTimer = (info: any) => {
@@ -124,6 +141,10 @@ export default function TablePageWrapper({
 			if (keys.includes(newVal.toLowerCase())) return;
 		}
 
+		const newGeneric = { ...generic, [newVal]: 0 };
+		localStorage.setItem(GENERIC_ID, JSON.stringify(newGeneric));
+		setGeneric(newGeneric);
+
 		updateData(
 			data.map((row) => {
 				return {
@@ -139,9 +160,15 @@ export default function TablePageWrapper({
 			const keys = Object.keys(temp.generic).map((word) => word.toLowerCase());
 			if (!keys.includes(word.toLowerCase())) return;
 		}
+
+		const newGeneric = { ...generic };
+		delete newGeneric[word];
+		localStorage.setItem(GENERIC_ID, JSON.stringify(newGeneric));
+		setGeneric(newGeneric);
+
 		updateData(
 			data.map((row) => {
-				const { [word]: _, ...rest } = row.generic; 
+				const { [word]: _, ...rest } = row.generic;
 				return {
 					...row,
 					generic: rest,

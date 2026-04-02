@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 export default function DialogContent({
 	description,
 	onClick,
-	showInput=false,
+	showInput = false,
 }: {
 	description?: any;
 	onClick?: any;
@@ -33,7 +33,7 @@ export default function DialogContent({
 					</Button>
 				</Dialog.ActionTrigger>
 				<Dialog.ActionTrigger asChild>
-					<Button {...buttonStyle} onClick={()=>onClick(crutchWordTemp)}>
+					<Button {...buttonStyle} onClick={() => onClick(crutchWordTemp)}>
 						OK
 					</Button>
 				</Dialog.ActionTrigger>

@@ -7,12 +7,12 @@ export default function AhCounterCell({
 	value,
 	setColumnValue,
 	label,
-	deleteCrutchWord
+	deleteCrutchWord,
 }: {
 	value: any;
 	setColumnValue: any;
 	label?: string;
-	deleteCrutchWord?:any
+	deleteCrutchWord?: any;
 }) {
 	const [deleteButtonVisible, setDeleteButtonVisible] = useState(false);
 	return (
@@ -27,7 +27,7 @@ export default function AhCounterCell({
 					rounded='full'
 					size='xs'
 					visibility={deleteButtonVisible ? 'visible' : 'hidden'}
-					onClick={()=>deleteCrutchWord()}
+					onClick={() => deleteCrutchWord()}
 				/>
 			</Field.Label>
 			<NumberInput.Root

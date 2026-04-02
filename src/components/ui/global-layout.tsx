@@ -22,7 +22,7 @@ export default function GlobalLayout({
 	isMounted = false,
 	showHeading = true,
 	showCrutchWordButton = false,
-	addCrutchWord
+	addCrutchWord,
 }: {
 	title: any;
 	children?: React.ReactNode;
@@ -32,7 +32,7 @@ export default function GlobalLayout({
 	showHeading?: boolean;
 	showshowHeadingTime?: boolean;
 	showCrutchWordButton?: boolean;
-	addCrutchWord?:any
+	addCrutchWord?: any;
 }) {
 	const getDate = () => {
 		const dateObject = new Date();
@@ -94,7 +94,9 @@ export default function GlobalLayout({
 						onClick={() => {
 							dialog.open('crutch_word', {
 								title: 'Add Crutch Word:',
-								content: <DialogContent showInput={true} onClick={(newVal:any) => addCrutchWord(newVal)} />,
+								content: (
+									<DialogContent showInput={true} onClick={(newVal: any) => addCrutchWord(newVal)} />
+								),
 							});
 						}}
 					>
