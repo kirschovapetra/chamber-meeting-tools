@@ -2,12 +2,8 @@
 import {
 	Box,
 	Button,
-	CloseButton,
-	createOverlay,
-	Dialog,
 	Flex,
 	Heading,
-	Portal,
 } from '@chakra-ui/react';
 import { buttonStyle } from '../../styles';
 import LoadingScreen from './loading-screen';
