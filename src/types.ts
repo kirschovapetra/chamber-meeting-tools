@@ -1,3 +1,41 @@
+export const GENERIC_DEFAULT = {
+	ah: '0',
+	um: '0',
+	er: '0',
+	well: '0',
+	so: '0',
+	like: '0',
+	but: '0',
+	repeats: '0',
+	'you know': '0',
+	other: '0',
+};
+
+export const GRAMMARIAN_DEFAULT = {
+	speaker: '',
+	quote: '',
+	tooltipVisible: false,
+};
+
+export const TIMER_DEFAULT = {
+	time: '',
+	role: '',
+	speaker: '',
+	greenTime: '0:00',
+	amberTime: '0:00',
+	redTime: '0:00',
+	resultTime: '0:00',
+	generic: 'Start',
+	tooltipVisible: false,
+};
+
+export const AH_COUNTER_DEFAULT = {
+	role: '',
+	speaker: '',
+	generic: {},
+	tooltipVisible: false,
+};
+
 export enum PageType {
 	TIMER = 'timer',
 	AH_COUNTER = 'ah_counter',

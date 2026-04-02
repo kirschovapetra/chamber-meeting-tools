@@ -3,18 +3,18 @@ import AhCounterCell from '../helpers/ah-counter-cell';
 export default function AhCounterRow({
 	wordCounts,
 	setColumnValue,
-	deleteCrutchWord
+	deleteCrutchWord,
 }: {
 	wordCounts: any;
 	setColumnValue: any;
-	deleteCrutchWord?:any
+	deleteCrutchWord?: any;
 }) {
 	return (
 		<>
 			{Object.keys(wordCounts).map((word, key) => {
 				return (
 					<AhCounterCell
-						deleteCrutchWord={()=>deleteCrutchWord(word)}
+						deleteCrutchWord={() => deleteCrutchWord(word)}
 						label={word}
 						key={key}
 						value={wordCounts[word]}
