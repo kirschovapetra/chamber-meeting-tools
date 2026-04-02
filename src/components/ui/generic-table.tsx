@@ -8,6 +8,8 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import { LuX } from 'react-icons/lu';
+import { dialog } from '../helpers/popup-dialog';
+import DialogContent from '../helpers/dialog-buttons';
 
 export default function GenericTable({
 	data,
@@ -76,13 +78,28 @@ export default function GenericTable({
 								{Array.from(selection).length} selected
 							</ActionBar.SelectionTrigger>
 							<ActionBar.Separator />
-							<Button variant='outline' size='sm' onClick={deleteSelectedRows}>
+							<Button
+								variant='outline'
+								size='sm'
+								onClick={() => {
+									dialog.open('are_you_sure', {
+										title: 'Are you sure?',
+										content: (
+											<DialogContent
+												description={'Selected rows will be deleted.'}
+												onClick={deleteSelectedRows}
+											/>
+										),
+									});
+								}}
+							>
 								Delete <LuX />
 							</Button>
 						</ActionBar.Content>
 					</ActionBar.Positioner>
 				</Portal>
 			</ActionBar.Root>
+			<dialog.Viewport />
 		</>
 	);
 }
